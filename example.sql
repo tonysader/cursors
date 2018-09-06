@@ -1,18 +1,18 @@
-DECLARE @person_ID int
-DECLARE @count int=(Select count(*) from person)
+DECLARE @employee_ID int
+DECLARE @count int=(Select count(*) from emplyees)
 
 DECLARE exCursor CURSOR FOR  
 
-SELECT person_ID 
-FROM dbo.person
+SELECT employee_ID 
+FROM emplyees
 OPEN exCursor ;  
 WHILE @count > 0  
    BEGIN  
-	FETCH NEXT FROM exCursor into @person_ID ;  
+	FETCH NEXT FROM exCursor into @employee_ID ;  
 
-UPDATE person
-   SET [unique_person_id] = NEWID()
- WHERE person_ID= @person_ID
+UPDATE emplyees
+   SET [unique_employee_ID] = NEWID()
+ WHERE employee_ID= @employee_ID
 Set @count=@count-1
    END;  
 CLOSE exCursor ;  
